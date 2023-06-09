@@ -13,7 +13,7 @@ socket.on('connect', () => {
     function sendPing(host) {
         ping.sys.probe(host, (isAlive) => {
             const status = isAlive ? 200 : 404;
-            clog(`客戶端:${host} 狀態碼:${status}`);
+            clog(`客戶端傳送:${host} 狀態碼:${status}`);
         });
     }
     // 每秒發送到伺服器端
@@ -23,7 +23,7 @@ socket.on('connect', () => {
 // 接收伺服器端的回應
 socket.on('pong', (response) => {
     clog(`伺服器回應: ${response}`);
-});
+});;
 
 
 // const axios = require('axios');
