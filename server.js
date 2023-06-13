@@ -14,20 +14,20 @@ const io = require('socket.io')(server, {
     }
 });
 
-const ip = '127.0.0.1:3123';
+const ip = `http://127.0.0.1:${port}`;
 
-//* 伺服器與客戶端連接
+//* 伺服器與使用者連接
 io.on('connection', (socket) => {
     clog(`使用者連接, sid=${socket.id}`);
 
-    // 發送 pong 碼給客戶端
+    // 發送 pong 碼給使用者
     function socket_send_info() {
         socket.emit('pong', ip);
     }
 
-    // 接收客戶端的 cmd(Ping) 
+    // 接收使用者的 cmd(Ping) 
     socket.on('cmd', function (arg) {
-        clog(`接收到客戶端 cmd sid=${socket.id} cmd=${arg.cmd}`);
+        clog(`接收到使用者 cmd sid=${socket.id} cmd=${arg.cmd}`);
         switch (arg.cmd) {
             case arg.cmd:
                 return socket_send_info();
